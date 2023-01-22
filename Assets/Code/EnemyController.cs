@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public float xspeed, yspeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(xspeed * Time.deltaTime, yspeed * Time.deltaTime, 0);
+    }
+    public void SetSpeed(float x, float y)
+    {
+        xspeed = x;
+        yspeed = y;
     }
 }
