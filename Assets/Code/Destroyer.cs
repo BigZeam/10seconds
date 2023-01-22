@@ -5,6 +5,7 @@ using UnityEngine;
 public class Destroyer : MonoBehaviour
 {
     // Start is called before the first frame update
+    GameController gc;
     public float xspeed, yspeed;
     public bool active;
     float timer;
@@ -12,6 +13,7 @@ public class Destroyer : MonoBehaviour
     public Transform[] positions;
     void Start()
     {
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         timer = Random.Range(1, 3);
     }
 
@@ -19,7 +21,7 @@ public class Destroyer : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime*1;
-        if(active && timer <= 0)
+        if(gc.GetState() && timer <= 0)
         {
             GameObject enemy = Instantiate(enemyPrefab, positions[Random.Range(0, positions.Length)].position, Quaternion.identity);
             enemy.GetComponent<EnemyController>().SetSpeed(xspeed, yspeed);

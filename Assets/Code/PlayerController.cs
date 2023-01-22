@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
+    GameController gc;
     public float speed;
     void Start()
     {
-        
+        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col) {
         if(col.gameObject.tag == "Enemy")
         {
+            gc.Dead();
             Destroy(this.gameObject);
         }
     }
