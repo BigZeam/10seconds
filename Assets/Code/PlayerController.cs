@@ -17,4 +17,10 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += move * speed * Time.deltaTime;
     }
+    private void OnCollisionEnter2D(Collision2D col) {
+        if(col.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

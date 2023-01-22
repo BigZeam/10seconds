@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float xspeed, yspeed;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,10 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         transform.Translate(xspeed * Time.deltaTime, yspeed * Time.deltaTime, 0);
+        if(transform.position.magnitude > 15)
+        {
+            Destroy(this.gameObject);
+        }
     }
     public void SetSpeed(float x, float y)
     {
