@@ -5,11 +5,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float xspeed, yspeed;
-   
+    public GameObject partPrefab;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instantiate(partPrefab, this.transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame

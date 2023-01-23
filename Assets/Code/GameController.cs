@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isPlaying, win, lose;
+    bool isPlaying, win, lose, restarting;
     public Text timerText;
     public GameObject winObj, loseObj, toolTip, playerObj, titleObj;
     float timer;
@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
         }
         if(isPlaying)
         {
+            restarting = false;
             timer-= Time.deltaTime;
             timerText.text = "Time: " + timer.ToString("F2");
 
@@ -59,8 +60,20 @@ public class GameController : MonoBehaviour
 
     IEnumerator GameSetUp()
     {
-        if(GameObject.FindGameObjectWithTag("Player") != null)
+        if(restarting == false)
+        {
+            restarting = true;
+            if(GameObject.FindGameObjectWithTag("Player") != null)
             Destroy(GameObject.FindGameObjectWithTag("Player").gameObject);
+        
+        if(GameObject.FindGameObjectsWithTag("Enemy") != null)
+        {
+            GameObject[] misery = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in misery)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
         toolTip.SetActive(true);
         isPlaying = false;
         win = false;
@@ -69,11 +82,13 @@ public class GameController : MonoBehaviour
         winObj.SetActive(false);
         loseObj.SetActive(false);
         yield return new WaitForSeconds(2f);
-
         toolTip.SetActive(false);
         isPlaying = true;
         timer = 10;
         Instantiate(playerObj, transform.position, Quaternion.identity);
+        }
+        
+        
     }
     
 }

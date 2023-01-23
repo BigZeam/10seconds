@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xspeed: 2
   yspeed: 0
+  partPrefab: {fileID: 3499568001915078748, guid: 7db3d2232486ecc4fb3e6c21ac510918, type: 3}
 --- !u!61 &6984534813599758160
 BoxCollider2D:
   m_ObjectHideFlags: 0

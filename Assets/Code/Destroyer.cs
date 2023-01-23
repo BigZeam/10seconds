@@ -9,7 +9,7 @@ public class Destroyer : MonoBehaviour
     public float xspeed, yspeed;
     public bool active;
     float timer;
-    public GameObject enemyPrefab;
+    public GameObject enemyPrefab, partPrefab;
     public Transform[] positions;
     void Start()
     {
